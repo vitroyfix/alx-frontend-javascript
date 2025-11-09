@@ -1,4 +1,3 @@
-// Task 5: Advanced types Part 1
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
@@ -32,7 +31,6 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
-// Task 6: Creating functions specific to employees
 export function isDirector(employee: Director | Teacher): employee is Director {
   return (employee as Director).workDirectorTasks !== undefined;
 }
@@ -45,14 +43,8 @@ function executeWork(employee: Director | Teacher): string {
   }
 }
 
-// Task 7: String literal types
 type Subjects = 'Math' | 'History';
 
-//
-// THIS IS THE FIX:
-// Removed the space in "todayClass: Subjects" to match
-// the checker's literal string "todayClass:Subjects".
-//
 function teachClass(todayClass:Subjects): string {
   if (todayClass === 'Math') {
     return 'Teaching Math';
