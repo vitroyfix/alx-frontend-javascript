@@ -1,20 +1,14 @@
-// Task 8: Ambient Namespaces (Main File)
-/// <reference path="./crud.d.ts" />
-
-import { RowID, RowElement } from './interface';
-import * as CRUD from 'crud.js';
+import { insertRow, deleteRow, updateRow } from './crud';
 
 const row: RowElement = {
   firstName: 'Guillaume',
   lastName: 'Salva',
 };
 
-const newRowID: RowID = CRUD.insertRow(row);
+const newRowID: RowID = insertRow(row);
 
-const updatedRow: RowElement = {
-  ...row,
-  age: 23,
-};
+// Removed the trailing comma from the object
+const updatedRow: RowElement = { ...row, age: 23 };
 
-CRUD.updateRow(newRowID, updatedRow);
-CRUD.deleteRow(newRowID);
+updateRow(newRowID, updatedRow);
+deleteRow(newRowID);
