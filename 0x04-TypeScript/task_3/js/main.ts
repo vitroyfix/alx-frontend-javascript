@@ -1,14 +1,56 @@
-import { insertRow, deleteRow, updateRow } from './crud';
+interface DirectorInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workDirectorTasks(): string;
+}
 
-const row: RowElement = {
-  firstName: 'Guillaume',
-  lastName: 'Salva',
-};
+interface TeacherInterface {
+  workFromHome(): string;
+  getCoffeeBreak(): string;
+  workTeacherTasks(): string;
+}
 
-const newRowID: RowID = insertRow(row);
+class Director implements DirectorInterface {
+  workFromHome = () => 'Working from home';
+  getCoffeeBreak = () => 'Getting a coffee break';
+  workDirectorTasks = () => 'Getting to director tasks';
+}
 
-// Removed the trailing comma from the object
-const updatedRow: RowElement = { ...row, age: 23 };
+class Teacher implements TeacherInterface {
+  workFromHome = () => 'Cannot work from home';
+  getCoffeeBreak = () => 'Cannot have a break';
+  workTeacherTasks = () => 'Getting to work';
+}
 
-updateRow(newRowID, updatedRow);
-deleteRow(newRowID);
+function createEmployee(salary: number | string): Director | Teacher {
+  if (typeof salary === 'number') {
+    if (salary < 500) {
+      return new Teacher();
+    }
+  }
+  return new Director();
+}
+
+export function isDirector(employee: Director | Teacher): employee is Director {
+  return (employee as Director).workDirectorTasks !== undefined;
+}
+
+function executeWork(employee: Director | Teacher): string {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  } else {
+    return employee.workTeacherTasks();
+  }
+}
+
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass:Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+  if (todayClass === 'History') {
+    return 'Teaching History';
+  }
+  return '';
+}
