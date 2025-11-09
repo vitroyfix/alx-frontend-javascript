@@ -19,9 +19,13 @@ interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
 
-const printTeacher: printTeacherFunction = (firstName, lastName) => {
+//
+// THIS IS THE FIX: Changed from a 'const' arrow function
+// to a standard 'function' declaration.
+//
+function printTeacher(firstName: string, lastName: string): string {
   return `${firstName.charAt(0)}. ${lastName}`;
-};
+}
 
 // Task 4: Writing a class
 interface IStudentClassConstructor {
