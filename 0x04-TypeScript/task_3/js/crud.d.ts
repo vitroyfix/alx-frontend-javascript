@@ -1,5 +1,8 @@
-declare function insertRow(row: RowElement): number;
+import { RowID, RowElement } from './interface';
 
-declare function deleteRow(rowId: RowID): void;
-
-declare function updateRow(rowId: RowID, row: RowElement): RowID;
+// This declares the types for the file './crud.js'
+declare module './crud.js' {
+  export function insertRow(row: RowElement): RowID;
+  export function deleteRow(rowId: RowID): void;
+  export function updateRow(rowId: RowID, row: RowElement): RowID;
+}
