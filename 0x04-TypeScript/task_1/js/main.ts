@@ -1,4 +1,3 @@
-// Task 1: Let's build a Teacher interface
 interface Teacher {
   readonly firstName: string;
   readonly lastName: string;
@@ -8,26 +7,18 @@ interface Teacher {
   [key: string]: any;
 }
 
-// Task 2: Extending the Teacher class
-// Renamed from Directors to Director to match the checker
 interface Director extends Teacher {
   numberOfReports: number;
 }
 
-// Task 3: Printing teachers
 interface printTeacherFunction {
   (firstName: string, lastName: string): string;
 }
 
-//
-// THIS IS THE FIX: Changed from a 'const' arrow function
-// to a standard 'function' declaration.
-//
 function printTeacher(firstName: string, lastName: string): string {
-  return `${firstName.charAt(0)}. ${lastName}`;
+  return `${firstName}. ${lastName}`;
 }
 
-// Task 4: Writing a class
 interface IStudentClassConstructor {
   new (firstName: string, lastName: string): IStudentClass;
 }
